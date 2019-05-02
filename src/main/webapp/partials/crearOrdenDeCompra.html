@@ -1,0 +1,87 @@
+<div class="container-fluid">
+  <h1> Crear orden de compra <img src="../images/{{comprasCtrl.persistenciaActual}}.png"/> </h1>
+
+  <form>
+
+
+
+    <div class="row">
+      <div class="col">
+        <input type="text" id="fechaDeCompra" class="form-control" placeholder="Fecha Creacion">
+      </div>
+      <script>
+        $("#fechaDeCompra").datepicker({
+          dateFormat: 'dd/mm/yy',
+          maxDate: '0'
+        });
+      </script>
+      <div class="col">
+
+        <select class="form-control" id="selectProducto" ng-options=" proveedor.nombre for proveedor in comprasCtrl.proveedores"
+          ng-model="comprasCtrl.proveedorSeleccionado" ng-init="comprasCtrl.proveedorSeleccionado = options[0]">
+          <option value="" selected disabled>Seleccione Proveedor</option>
+        </select>
+
+
+      </div>
+      <div class="col"></div>
+    </div>
+  </form>
+
+  <div class="row">
+    <div class="col">
+      <input type="text" id="cantidad" class="form-control" placeholder="Cantidad" ng-model="comprasCtrl.cantidad">
+    </div>
+    <div class="col" >
+
+      <select class="form-control" id="selectProducto" ng-options=" producto.descripcion for producto in comprasCtrl.productos"
+        ng-model="comprasCtrl.productoSeleccionado" ng-init="comprasCtrl.productoSeleccionado = options[0]">
+        <option value="" selected disabled>Seleccione Producto</option>
+      </select>
+    </div>
+    <div class="col"></div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <button type="button" class="btn btn-primary btn-lg btn-primary" ng-click="comprasCtrl.agregarItem()">Agregar</button>
+    </div>
+  </div>
+
+  <div class="row">
+    <table class="table">
+      <thead>
+
+        <tr>
+          <td scope="col">Cantidad</td>
+          <td scope="col">Item</td>
+          <td scope="col">Total</td>
+          <td scope="col">Accion</td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="itemCompra in comprasCtrl.productosComprados">
+          <td>{{itemCompra.cantidad}}</td>
+          <td>{{itemCompra.producto.descripcion}}</td>
+          <td>{{itemCompra.costoTotal}}</td>
+          <td>
+            <a ng-click="comprasCtrl.eliminar(itemCompra)">Eliminar</a>
+          </td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <td></td>
+        <td></td>
+        <td>Total: ${{comprasCtrl.total}}</td>
+        <td></td>
+      </tfoot>
+    </table>
+  </div>
+  <button type="button" class="btn btn-primary btn-lg" ng-click="comprasCtrl.aceptar()" ng-show="!comprasCtrl.successMessage">Aceptar</button>
+
+  <button type="button" class="btn btn-primary btn-lg" ui-sref="OrdenesDeCompra">Volver</button>
+  <div class="d-inline-block col-md-6">
+    <p ng-model="comprasCtrl" ng-if="comprasCtrl.successMessage != null && comprasCtrl.successMessage != '' " class="green-text"> <b> {{comprasCtrl.successMessage}} </b> </p>
+    <p ng-model="comprasCtrl" ng-if="comprasCtrl.errorMessage != null && comprasCtrl.errorMessage != '' " class="red-text"> <b> {{comprasCtrl.errorMessage}} </b> </p>
+</div>
+
+</div>

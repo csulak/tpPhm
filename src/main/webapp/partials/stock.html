@@ -1,0 +1,49 @@
+<div class="container-fluid" >
+	
+	<h1> Stock <img src="../images/{{stockCtrl.persistenciaActual}}.png"/> </h1>
+
+  <div class="row">
+    <div class="col">
+      <input type="text" id="descripcion" ng-model="stockCtrl.descripcion" class="form-control" placeholder="Descripción">
+    </div>
+   
+    <div class="col">
+      <input type="number" id="stockMayorA" ng-model="stockCtrl.stockMayorA" class="form-control" placeholder="Stock mayor a">
+    </div>
+    
+    <div class="col">
+      <input type="number" id="stockMenorA" ng-model="stockCtrl.stockMenorA" class="form-control" placeholder="Stock menor a">
+    </div>
+  </div>
+
+  <input type="checkbox" name="debajoStockMinimo" ng-model="stockCtrl.debajoStockMinimo" value="debajoStockMinimo"> Por debajo del stock minimo<br>
+
+  <center> 
+    <button type="button" class="btn btn-primary btn-lg" ng-click="stockCtrl.buscar()">Buscar</button>
+   
+    </center>
+
+
+    <table class="table table-bordered ">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Producto</th>
+            <th scope="col">Stock actual</th>
+            <th scope="col">Stock minimo</th>
+            
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="Producto in stockCtrl.stock">
+            <th > <a ui-sref="DetalleProducto({id: Producto.codigo})"  style="color: blue !important"> {{Producto.codigo}} </a></th>
+            <td class="color-negro">{{Producto.descripcion}}</td>
+            <td class="color-negro">{{Producto.stockActual}}</td>
+            <td class="color-negro">{{Producto.stockMinimo}}</td>
+            
+          </tr>
+
+        </tbody>
+    </table>
+    
+</div>

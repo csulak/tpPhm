@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+	
+	<script src="node_modules/angular/angular.js" type="text/javascript" charset="utf-8"></script>
+
+	<!--
+		<link rel="stylesheet" type="text/css"
+	href="node_modules/bootstrap/dist/css/bootstrap.css">
+		<script src="node_modules/angular-ui-bootstrap/ui-bootstrap-tpls.js"
+	type="text/javascript" charset="utf-8"></script>
+		 Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<title>Pokemon AlGo III</title>
+	<!-- Your custom styles (optional) -->
+	<link href="css/main.css" rel="stylesheet">
+	<link rel="icon" href="img/pokebolas/pokebola.png">
+	<!-- SCRIPTS -->
+	<!-- JQuery -->
+	<script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
+	<!-- Bootstrap core JavaScript -->
+	<script type="text/javascript" src="js/bootstrap.min.js"></script>
+	
+</head>
+
+<body ng-app="myApp">
+
+	<nav class="navbar navbar-expand-lg navbar-dark indigo">
+		<a class="navbar-brand" href="#"><img src="img/pokebolas/pokebola.png" alt="pokebola" class="imagenEncabezado" > Pokemon Al GO III</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+		    aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+		<div class="collapse navbar-collapse" id="navbarNav">
+			<ul class="navbar-nav ml-auto">
+				<li class="nav-item active">
+					<a class="nav-link" href="mundo.html"><i class="fa fa-map-marker" aria-hidden="true"></i> El Mundo </a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="entrenadores.html"><i class="fa fa-user" aria-hidden="true"></i> Entrenador<span class="sr-only">(current)</span> <img src="img/entrenadores/ash.jpg" class="imagenEncabezado img-fluid rounded-circle hoverable" /> </a>
+				</li>
+			</ul>
+		</div>
+	</nav>
+
+	<div class="container-fluid d-inline-block">
+		<div class="col-xs-12 col-md-4 floatLeft">
+			<div class="d-flex justify-content-center botonera col-6 mx-auto">
+				<table>
+					<tbody ng-controller="LaBotoneraController as laBotonera">
+						<tr>
+							<td></td>
+							<td><button type="button" class="btn mdb-color indigo btn-lg" ng-click="{{botonera.sumarY()}}">N</button></td>
+							<td></td>
+						</tr>
+						<tr>
+							<td><button type="button" class="btn mdb-color indigo btn-lg" ng-click="{{botonera.restarX()}}">O</button></td>
+							<td></td>
+							<td><button type="button" class="btn mdb-color indigo btn-lg" ng-click="{{botonera.sumarX()}}">E</button></td>
+						</tr>
+						<tr>
+							<td></td>
+							<td><button type="button" class="btn mdb-color indigo btn-lg" ng-click="{{botonera.restarY()}}">S</button></td>
+							<td></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="row col-12 d-flex justify-content-center">
+				<i class="fa fa-map-marker" aria-hidden="true"></i> {{botonera.axisY}}, {{botonera.axisX}}
+			</div>
+		</div>
+
+
+		<div class="col-xs-12 col-md-8 floatLeft">
+			<div class="row d-flex justify-content-center">
+				<div class="d-inline-block col-xs-12 col-md-10">
+					<div class="card">
+						<div class="card-body">
+							<span class="titulo-tabla">Oponentes</span>
+							<table class="table table-hover table-bordered table-sm tabla-general">
+								<thead class="mdb-color indigo">
+									<tr>
+										<th><strong>Entrenador</strong></th>
+										<th><strong>Pokémon</strong></th>
+										<th><strong>Apuesta</strong></th>
+										<th></th>
+									</tr>
+								</thead>
+								<tbody ng-controller="TodosLosOponentesControllers as todosLosOponentes" >
+									<tr ng-repeat=" oponente in todosLosOponentes.oponentes">
+										<td>{{oponente.nombre}}<img ng-src="{{oponente.imagenEntrenador}}" class="imagenTabla img-fluid rounded-circle" /></td>
+										<td>{{oponente.pokemon}} {{oponente.nivelpk}} <img ng-src="{{oponente.imagenPokemon}}" class="imagenTabla img-fluid rounded-circle" /> </td>
+										<td>{{oponente.apuesta}}</td>
+										<td class="icono-celda">
+											<i class="fa fa-group" aria-hidden="true"></i>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+			<br>
+			<div class="row">
+				<div class="col-xs-12 col-md-6 d-inline-block">
+					<div class="card">
+						<div class="card-body">
+							<span class="titulo-tabla">Pokémon salvajes</span>
+							<table class="table table-hover table-bordered table-sm tabla-general">
+								<thead class="mdb-color indigo">
+									<tr>
+										<th><strong>Pokémon</strong></th>
+										<th><strong>Nivel</strong></th>
+										<th></th>
+									</tr>
+								</thead>
+								<tbody ng-controller="TodosLosPokemonesSalvajeControllers as pokemonesSalvajeTodos">
+									<tr ng-repeat="PokemonSalvaje in pokemonesSalvajeTodos.pokemonesSalvaje">
+										<td>{{PokemonSalvaje.nombre}} <img ng-src="{{PokemonSalvaje.imagen}}" class="imagenTabla img-fluid rounded-circle" /></td>
+										<td>{{PokemonSalvaje.nivel}}</td>
+										<td class="icono-celda">
+											<img src="img/pokebolas/pokebola.png" alt="pokebola" class="imagenTabla">
+										</td>
+									</tr>
+									
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+				
+				<div class="col-xs-12 col-md-6 d-inline-block">
+					<div class="card">
+						<div class="card-body">
+							<span class="titulo-tabla">Pokeparadas</span>
+							<table class="table table-hover table-bordered table-sm tabla-general">
+								<thead class="mdb-color indigo">
+									<tr>
+										<th><strong>Pokeparada</strong></th>
+										<th></th>
+									</tr>
+								</thead>
+								<tbody ng-controller="TodasLasPokeparadasControllers as pokeparadasTodas">
+									<tr ng-repeat="Pokeparada in pokeparadasTodas.pokeparadas">
+										<td>{{Pokeparada.nombre}}</td>
+										<td class="icono-celda">
+											<i class="fa fa-plus-circle pokeparada" aria-hidden="true"></i>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!--Footer-->
+	<footer class="page-footer indigo center-on-small-only pt-0">
+
+		<!--Footer Links-->
+		<div class="container">
+
+			<!--First row-->
+			<div class="row">
+
+				<!--First column-->
+				<div class="col-md-12">
+
+					<div class="footer-socials flex-center footerSocial">
+
+						<!--Facebook-->
+						<a class="icons-sm fb-ic"><i class="fa fa-facebook fa-lg white-text mr-md-4"> </i></a>
+						<!--Twitter-->
+						<a class="icons-sm tw-ic"><i class="fa fa-twitter fa-lg white-text mr-md-4"> </i></a>
+						<!--Google +-->
+						<a class="icons-sm gplus-ic"><i class="fa fa-google-plus fa-lg white-text mr-md-4"> </i></a>
+						<!--Linkedin-->
+						<a class="icons-sm li-ic"><i class="fa fa-linkedin fa-lg white-text mr-md-4"> </i></a>
+						<!--Instagram-->
+						<a class="icons-sm ins-ic"><i class="fa fa-instagram fa-lg white-text mr-md-4"> </i></a>
+						<!--Pinterest-->
+						<a class="icons-sm pin-ic"><i class="fa fa-pinterest fa-lg white-text"> </i></a>
+					</div>
+				</div>
+				<!--/First column-->
+			</div>
+			<!--/First row-->
+
+			<!--Grid row-->
+			<div class="row pt-5 mb-3 text-center d-flex justify-content-center">
+
+				<!--Grid column-->
+				<div class="col-md-2 mb-3">
+					<h6 class="title font-bold"><a href="#!">About us</a></h6>
+				</div>
+				<!--Grid column-->
+				<div class="col-md-2 mb-3">
+					<h6 class="title font-bold"><a href="#!">Contact</a></h6>
+				</div>
+
+			</div>
+			<!--Grid row-->
+
+			<hr class="rgba-white-light" style="margin: 0 15%;">
+
+			<!--Grid row-->
+			<div class="row d-flex text-center justify-content-center mb-md-0 mb-4">
+
+				<!--Grid column-->
+				<div class="col-md-8 col-12 mt-5">
+					<p style="line-height: 1.7rem">Tp de interface grafica de Pokemon Go</p>
+
+				</div>
+				<!--Grid column-->
+
+			</div>
+			<!--Grid row-->
+
+			<hr class="clearfix d-md-none rgba-white-light" style="margin: 10% 15% 5%;">
+
+		</div>
+		<!--/Footer Links-->
+
+		<!--Copyright-->
+		<div class="footer-copyright">
+			<div class="container-fluid">
+				© 2017 Copyright: <a href="https://www.MDBootstrap.com"> MDBootstrap.com </a>
+			</div>
+		</div>
+		<!--/Copyright-->
+
+	</footer>
+	<!--/Footer
+	<div ng-controller="LibrosController as librosController">
+
+		<h1 ng-repeat="libro in librosController.libros">{{libro}}</h1>
+	</div>-->
+
+	<script src="js/services/BotoneraService.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/services/PokeparadaService.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/services/Oponente.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/services/PokemonSalvajeService.js" type="text/javascript" charset="utf-8"></script>
+	<!--<script src="js/controllers/LibrosController.js" type="text/javascript" charset="utf-8"></script>-->
+	<script src="js/controllers/BotoneraController.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/controllers/PokeparadaController.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/controllers/OponenteController.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/controllers/PokemonSalvajeController.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/app.js" type="text/javascript" charset="utf-8"></script>
+	
+</body>
+
+</html>

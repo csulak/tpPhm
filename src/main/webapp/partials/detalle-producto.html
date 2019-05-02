@@ -1,0 +1,66 @@
+<div class="container-fluid" >
+
+    <div class="row">
+        <div class="d-inline-block col-md-12">
+          <h1> <p class="" > <b> Detalle de producto <img src="../images/{{productoCtrl.persistenciaActual}}.png"/> </b> </p> </h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="d-inline-block col-md-3">
+            <div class="list-group">
+                <a href="#" class="list-group-item list-group-item-action"><b>Descripcion :</b> {{ productoCtrl.producto.descripcion }} </a>
+                <div class="row" ng-model="productoCtrl" ng-if="productoCtrl.esProductoCompuesto() " >
+                    <div class="d-inline-block col-md-12">
+                        <a href="#" class="list-group-item list-group-item-action"> <b> Compuesto por </b> </a>
+                      <table class="table table-bordered" style="margin-bottom:0px!important">
+                            <thead>
+                              <tr>
+                                <th scope="col">Cantidad</th>
+                                <th scope="col">Producto</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr ng-repeat="(key, value) in  productoCtrl.producto.productos">
+                                <td> {{value}} </td>
+                                <td> {{key}} </td>
+                              </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                  </div>
+                <a href="#" class="list-group-item list-group-item-action"><b>Stock actual :</b> {{ productoCtrl.producto.stockActual }} </a>
+                <a href="#" class="list-group-item list-group-item-action"><b>Stock minimo :</b> {{ productoCtrl.producto.stockMinimo }} </a>
+                <a href="#" class="list-group-item list-group-item-action"><b>Stock maximo :</b> {{ productoCtrl.producto.stockMaximo }}  </a>
+                <a href="#" class="list-group-item list-group-item-action"><b>Costo : </b> $ {{ productoCtrl.producto.costo }} </a>
+              </div>
+        </div>
+        <div class="d-inline-block col-md-9">
+            <!-- Default input -->
+            <div class="d-inline-block col-md-2">
+                <label for="exampleForm2">Cantidad a vender</label>
+            </div>
+            
+            <div class="d-inline-block col-md-1">
+                <input type="number" id="exampleForm2" class="form-control" ng-model="productoCtrl.cantidad" min="1" >
+            </div>
+            
+            <div class="d-inline-block col-md-3">
+                <button type="button" class="btn btn-primary btn-lg btn-success" ng-click="productoCtrl.vender()">Realizar venta</button>
+            </div>
+
+            <div class="d-inline-block col-md-6">
+                <p ng-model="productoCtrl" ng-if="productoCtrl.successMessage != null && productoCtrl.successMessage != '' " class="green-text"> <b> {{productoCtrl.successMessage}} </b> </p>
+                <p ng-model="productoCtrl" ng-if="productoCtrl.errorMessage != null && productoCtrl.errorMessage != '' " class="red-text"> <b> {{productoCtrl.errorMessage}} </b> </p>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="d-inline-block col-md-12">
+            <button type="button" class="btn btn-primary btn-lg btn-danger" ng-click="productoCtrl.volver()">Volver</button>
+        </div>
+    </div>
+
+</div>

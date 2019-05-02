@@ -1,0 +1,90 @@
+@import 'https://maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css';
+@import url(../css/bootstrap/bootstrap.min.css);
+@import url(../css/bootstrap/mdb.min.css);
+/* YOUR CUSTOM STYLES */
+@media screen and (min-width: 770px) and (min-height: 420px) {
+  .botonera {
+    padding-top: 30%; } }
+
+/**
+* Body
+**/
+body {
+  background-color: #ffffff; }
+
+/**
+* Tablas
+*/
+.tabla-general {
+  /*@extend .table;
+    @extend .table-hover;
+    @extend .table-bordered;
+    @extend .table-sm;*/
+  padding-top: 2em;
+  padding-right: 2em;
+  padding-left: 2em;
+  border-collapse: collapse;
+  border: 2px solid black; }
+  .tabla-general td {
+    border: 1px solid black; }
+
+tr th {
+  color: rgb(0, 0, 0);
+  /* color de texto de encabezado de columnas de tablas */
+  font-family: Roboto;
+  font-weight: bold; }
+
+.titulo-tabla {
+  font-size: 1.5em;
+  font-weight: normal;
+  padding: 2px; }
+
+/**
+* Imagenes
+*/
+.icono-celda {
+  position: relative;
+  text-align: center; }
+
+.imagenEntrenador {
+  padding-left: 0px; }
+
+.imagenPokemon {
+  width: 176px;
+  height: 176px; }
+
+.imagenTabla {
+  width: 15px;
+  height: 15px; }
+
+.imagenEncabezado {
+  width: 30px;
+  height: 30px; }
+
+/**
+* General
+*/
+.pokeparada {
+  color: red; }
+
+.footerSocial {
+  height: 40px; }
+
+.floatLeft {
+  float: left; }
+
+#navbarNav {
+  padding-left: 400px; }
+
+.color-negro{
+  color: rgb(0, 0, 0);
+  font-family: Roboto;
+  font-weight: bold; 
+  }
+
+
+  .footerClavadoAbajo{
+    bottom: 0px !important;
+/*     position: fixed !important; */
+    width: 100%;   
+  }

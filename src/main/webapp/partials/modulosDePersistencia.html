@@ -1,0 +1,52 @@
+<div class="container-fluid" style="margin-bottom: 100px">
+    MODULOS DE PERSISTENCIA
+
+
+
+
+    <form>
+
+        <div class="row">
+
+            <div class="col">
+
+                <select class="form-control" id="selectModulo" ng-options=" modulo.nombre for modulo in persistenciaCtrl.modulos" ng-model="persistenciaCtrl.moduloSeleccionado"
+                    ng-init="persistenciaCtrl.moduloSeleccionado = options[0]">
+                    <option value="" selected>Seleccione Modulo de Persistencia</option>
+                </select>
+            </div>
+            <div class="col">
+                <button type="button" class="btn btn-primary btn-lg btn-primary" ng-click="persistenciaCtrl.agregarModulo()">Agregar</button>
+            </div>
+
+        </div>
+     <!--   <div class="d-inline-block ">
+
+            <p ng-model="comprasCtrl" ng-if="comprasCtrl.errorMessage != null && comprasCtrl.errorMessage != '' " class="red-text">
+                <b> {{comprasCtrl.errorMessage}} </b>
+            </p>
+        </div>  -->
+    </form>
+
+    <table class="table table-bordered ">
+        <thead>
+            <tr>
+                <th scope="col">Componentes Activados</th>
+                <th scope="col">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="modulo in persistenciaCtrl.modulosActivados">
+                <td class="color-negro">{{modulo.nombre}}</td>
+                <td> 
+                	<a ng-click="persistenciaCtrl.eliminarModulo( modulo.nombre )" > 
+                		<i style="color:red;" class="fa fa-trash-o" aria-hidden="true" > </i>
+               		</a> 
+                </td>
+                
+            </tr>
+
+        </tbody>
+    </table>
+
+</div>

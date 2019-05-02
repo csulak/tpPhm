@@ -1,0 +1,46 @@
+<div class="container-fluid">
+  <h1> VISTA ORDEN DE COMPRA <img src="../images/{{comprasCtrl.persistenciaActual}}.png"/> </h1>
+
+  <form>
+
+
+
+    <div class="row">
+      <div class="col">
+        <input type="text" id="fechaDeCompra" class="form-control" ng-value="comprasCtrl.compra.fechaDeCompra | date:'dd-MM-yyyy' " >
+      </div>
+    
+      <div class="col">
+        <input type="text" id="proveedor" class="form-control" ng-value="comprasCtrl.compra.proveedor.nombre" >
+      </div>
+    </div>
+  </form>
+
+ 
+
+    <div class="row">
+      <table class="table">
+        <thead>
+
+          <tr >
+            <td scope="col">Cantidad</td>
+            <td scope="col">Item</td> 
+            <td scope="col">Total</td>
+            
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="itemCompra in comprasCtrl.compra.productosComprados">
+            <td>{{itemCompra.cantidad}}</td>
+            <td>{{itemCompra.producto.descripcion}}</td>
+            <td>{{itemCompra.costoTotal}}</td>
+           
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    
+
+  <button type="button" class="btn btn-primary btn-lg" ui-sref="OrdenesDeCompra">Volver</button>
+
+</div>

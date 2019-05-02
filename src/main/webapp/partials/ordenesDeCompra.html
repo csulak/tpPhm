@@ -1,0 +1,87 @@
+<div class="container-fluid" style="margin-bottom: 100px">
+
+  <h1>
+  	Ordenes de compra <img src="../images/{{comprasCtrl.persistenciaActual}}.png"/>
+  </h1>
+  
+  <form>
+    
+    <div class="row">
+      <div class="col">
+        <input type="text" id="fechaDesde" class="form-control" placeholder="Fecha Desde">
+      </div>
+      <div class="col">
+        <input type="text" id="fechaHasta" class="form-control" placeholder="Fecha Hasta">
+      </div>
+      <div class="col">
+        
+        
+        <select class="form-control" id="selectProducto" ng-options=" producto.descripcion for producto in comprasCtrl.productos"
+        ng-model="comprasCtrl.productoSeleccionado" 
+        ng-init="comprasCtrl.productoSeleccionado = options[0]">
+        <option value="" selected >Seleccione Producto</option>
+      </select>
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="col">
+      <input type="text" id="totalDesde" ng-model="comprasCtrl.totalDesde" class="form-control" placeholder="Total Desde">
+    </div>
+    <div class="col">
+      <input type="text" id="totalHasta" ng-model="comprasCtrl.totalHasta" class="form-control" placeholder="Total Hasta">
+    </div>
+    <div class="col">
+      
+      <select class="form-control" id="selectProducto" ng-options=" proveedor.nombre for proveedor in comprasCtrl.proveedores"
+      ng-model="comprasCtrl.proveedorSeleccionado"
+      ng-init="comprasCtrl.proveedorSeleccionado = options[0]">
+      <option value="" selected>Seleccione Proveedor</option>
+    </select>
+  </div>
+</div>
+<button type="button" class="btn btn-primary btn-lg btn-primary" ng-click="comprasCtrl.buscar()">Buscar</button>
+<div class="d-inline-block ">
+    
+    <p ng-model="comprasCtrl" ng-if="comprasCtrl.errorMessage != null && comprasCtrl.errorMessage != '' " class="red-text"> <b> {{comprasCtrl.errorMessage}} </b> </p>
+</div>
+</form>
+<script>
+  
+  $("#fechaDesde").datepicker({
+    dateFormat: 'dd/mm/yy'
+  });
+  $("#fechaHasta").datepicker({
+    dateFormat: 'dd/mm/yy'
+  });
+</script>
+
+<table class="table table-bordered ">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Descripcion</th>
+      <th scope="col">Fecha</th>
+      <th scope="col">Productos</th>
+      <th scope="col">Total</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="compra in comprasCtrl.compras">
+      <th>
+        <a ui-sref="CargaCompra({id: compra.codigo})" style="color: blue !important"> {{compra.codigo}} </a>
+      </th>
+      <td class="color-negro">{{compra.proveedor.nombre}}</td>
+      <td class="color-negro">{{compra.fechaDeCompra | date:'dd/MM/yyyy'}}</td>
+      <td class="color-negro">
+        <span ng-repeat="prod in compra.productosComprados"> {{prod.cantidad}} {{prod.producto.descripcion}}, </span>
+      </td>
+      <td class="color-negro">{{compra.total}}</td>
+    </tr>
+    
+  </tbody>
+</table>
+
+<button type="button" class="btn btn-primary btn-lg" ui-sref="CrearOrdenDeCompra">Nueva Compra</button>
+
+</div>
